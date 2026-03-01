@@ -1,0 +1,97 @@
+### ZenithMall 会员模块 API 测试
+
+# 基础URL
+@baseUrl = http://localhost:8080
+@token = 
+
+##############################################
+# 1. 用户注册
+##############################################
+POST {{baseUrl}}/v1/users/register
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "123456",
+  "phone": "13800138000",
+  "email": "test@example.com"
+}
+
+##############################################
+# 2. 用户登录（用户名）
+##############################################
+POST {{baseUrl}}/v1/users/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "123456"
+}
+
+##############################################
+# 3. 用户登录（手机号）
+##############################################
+POST {{baseUrl}}/v1/users/login
+Content-Type: application/json
+
+{
+  "username": "13800138000",
+  "password": "123456"
+}
+
+##############################################
+# 4. 获取用户信息
+# 注意：需要先登录获取 token，然后替换下面的 @token
+##############################################
+GET {{baseUrl}}/v1/users/info
+Authorization: Bearer {{token}}
+
+##############################################
+# 测试数据：注册新用户（用于测试）
+##############################################
+POST {{baseUrl}}/v1/users/register
+Content-Type: application/json
+
+{
+  "username": "user_test_001",
+  "password": "123456",
+  "phone": "13900139000",
+  "email": "user001@test.com"
+}
+
+##############################################
+# 错误测试：用户名太短
+##############################################
+POST {{baseUrl}}/v1/users/register
+Content-Type: application/json
+
+{
+  "username": "abc",
+  "password": "123456",
+  "phone": "13900139001",
+  "email": "abc@test.com"
+}
+
+##############################################
+# 错误测试：手机号格式错误
+##############################################
+POST {{baseUrl}}/v1/users/register
+Content-Type: application/json
+
+{
+  "username": "test002",
+  "password": "123456",
+  "phone": "12345",
+  "email": "test002@test.com"
+}
+
+##############################################
+# 错误测试：密码错误
+##############################################
+POST {{baseUrl}}/v1/users/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "wrong_password"
+}
