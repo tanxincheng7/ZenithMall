@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenithMall</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .services {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            text-align: left;
+        }
+        .service {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .service h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .service p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .status {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 ZenithMall</h1>
+        <p>欢迎来到 ZenithMall 电商平台</p>
+        <div class="status">✓ 系统运行中</div>
+        
+        <div class="services">
+            <div class="service">
+                <h3>MySQL</h3>
+                <p>端口: 3306</p>
+            </div>
+            <div class="service">
+                <h3>Redis</h3>
+                <p>端口: 6379</p>
+            </div>
+            <div class="service">
+                <h3>Nginx</h3>
+                <p>端口: 80, 443</p>
+            </div>
+            <div class="service">
+                <h3>RabbitMQ</h3>
+                <p>端口: 5672, 15672</p>
+            </div>
+            <div class="service">
+                <h3>Elasticsearch</h3>
+                <p>端口: 9200, 9300</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
