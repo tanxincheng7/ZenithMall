@@ -10,6 +10,9 @@ import com.tanxincheng.zenith.member.dto.UserLoginResponse;
 import com.tanxincheng.zenith.member.dto.UserRegisterRequest;
 import com.tanxincheng.zenith.member.dto.UserInfoResponse;
 import com.tanxincheng.zenith.member.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +23,7 @@ import java.util.Map;
 /**
  * 用户控制器
  */
+@Api(tags = "用户管理")
 @RestController
 @RequestMapping("/v1/users")
 @RequiredArgsConstructor
@@ -32,8 +36,9 @@ public class UserController {
      *
      * POST /api/member/v1/users/register
      */
+    @ApiOperation("用户注册")
     @PostMapping("/register")
-    public Result<Map<String, Long>> register(@Valid @RequestBody UserRegisterRequest request) {
+    public Result<Map<String, Long>> register(@Valid @RequestBody @ApiParam("注册信息") UserRegisterRequest request) {
         Long userId = userService.register(request);
         Map<String, Long> data = new HashMap<>();
         data.put("userId", userId);
@@ -45,8 +50,9 @@ public class UserController {
      *
      * POST /api/member/v1/users/login
      */
+    @ApiOperation("用户登录")
     @PostMapping("/login")
-    public Result<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest request) {
+    public Result<UserLoginResponse> login(@Valid @RequestBody @ApiParam("登录信息") UserLoginRequest request) {
         UserLoginResponse response = userService.login(request);
         return Result.success(response);
     }
@@ -56,8 +62,9 @@ public class UserController {
      *
      * GET /api/member/v1/users/info
      */
+    @ApiOperation("获取用户信息")
     @GetMapping("/info")
-    public Result<UserInfoResponse> getUserInfo(@RequestHeader(value = JwtConstants.TOKEN_HEADER, required = false) String authHeader) {
+    public Result<UserInfoResponse> getUserInfo(@RequestHeader(value = JwtConstants.TOKEN_HEADER, required = false) @ApiParam("认证Token") String authHeader) {
         // 提取并验证 Token
         if (authHeader == null || !authHeader.startsWith(JwtConstants.TOKEN_PREFIX)) {
             throw new BusinessException(ResultCode.INVALID_TOKEN, "请提供有效的 Token");
