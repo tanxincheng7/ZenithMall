@@ -10,11 +10,14 @@ server:
 spring:
   application:
     name: zenith-mall
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/zenith_mall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: zenith
-    password: zenith123456
+    password: "000000"
     # HikariCP 配置
     hikari:
       minimum-idle: 5
@@ -58,3 +61,21 @@ logging:
     name: logs/zenith-mall.log
     max-size: 10MB
     max-history: 30
+
+# Knife4j 配置
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+    enable-swagger-models: true
+    enable-document-manage: true
+    swagger-model-name: 实体类列表
+  production: false
+  cors: true
+
+# Swagger 配置
+springfox:
+  documentation:
+    enabled: true
+    swagger-ui:
+      enabled: true

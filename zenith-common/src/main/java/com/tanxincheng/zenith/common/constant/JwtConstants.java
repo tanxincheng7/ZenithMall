@@ -22,8 +22,9 @@ public class JwtConstants {
 
     /**
      * JWT 密钥（生产环境应从配置文件读取）
+     * HS512 算法要求密钥至少 64 字节（512 位）
      */
-    public static final String SECRET = "zenith-mall-secret-key-2024-spring-boot-jwt";
+    public static final String SECRET = "zenith-mall-secret-key-2024-spring-boot-jwt-authentication-secure-key-512bits-hs512";
 
     /**
      * Token 过期时间（7天）
