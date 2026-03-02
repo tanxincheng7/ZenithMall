@@ -1,0 +1,52 @@
+server:
+  port: 0  # 使用随机端口，避免冲突
+
+spring:
+  application:
+    name: zenith-mall-test
+
+  # 数据源配置 - 使用测试数据库
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zenith_mall_test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://localhost:3306/zenith_mall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: zenith
+    password: "000000"
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 5
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+  # Jackson 配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+
+# MyBatis Plus 配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+    banner: false
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.tanxincheng.zenith.*.entity
+
+# 日志配置
+logging:
+  level:
+    root: info
+    com.tanxincheng.zenith: debug
+    com.tanxincheng.zenith.*.mapper: debug
+    org.springframework.test: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n'
+
+# JWT 配置
+jwt:
+  secret: zenith-mall-secret-key-2024-spring-boot-jwt-authentication-secure-key-512bits-hs512
+  expiration: 3600000  # 1小时

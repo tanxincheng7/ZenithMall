@@ -72,14 +72,14 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException(ResultCode.USERNAME_OR_PASSWORD_ERROR);
         }
 
+        // 检查用户状态（在密码验证之前检查，提高安全性）
+        if (user.getStatus() == 0) {
+            throw new BusinessException(ResultCode.USER_NOT_FOUND, "用户已被禁用");
+        }
+
         // 验证密码
         if (!PasswordUtil.matches(request.getPassword(), user.getPassword())) {
             throw new BusinessException(ResultCode.USERNAME_OR_PASSWORD_ERROR);
-        }
-
-        // 检查用户状态
-        if (user.getStatus() == 0) {
-            throw new BusinessException(ResultCode.USER_NOT_FOUND, "用户已被禁用");
         }
 
         // 生成 Token
