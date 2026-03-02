@@ -71,7 +71,7 @@ knife4j:
     enable-document-manage: true
     swagger-model-name: 实体类列表
   production: false
-  cors: true
+  # CORS 配置已移至 CorsConfig.java
 
 # Swagger 配置
 springfox:

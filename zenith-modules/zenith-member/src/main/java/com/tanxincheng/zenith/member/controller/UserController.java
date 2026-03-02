@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @Api(tags = "用户管理")
 @RestController
-@RequestMapping("/v1/users")
+@RequestMapping("/api/member/v1/users")
 @RequiredArgsConstructor
 public class UserController {
 
